@@ -1,7 +1,7 @@
 # Project Context
 
 ## Project
-Name: NEXUS // WORLD
+Name: NEXUS WORLD
 Purpose: Synthetic World Intelligence Engine. Tagline: "Simulate tomorrow before you build it."
 Product vision: A domain-bounded system for counterfactual simulation and decision experimentation. Computational models produce every number; LLM agents plan, critique and explain, never produce numbers.
 Current phase: Phase 5: Production deployment (complete)

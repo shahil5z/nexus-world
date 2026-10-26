@@ -45,7 +45,15 @@ export function Console() {
   }, []);
   const onStatus = useCallback((s: AgentStatus | null) => setAi(s), []);
 
-  const addToPool = (s: Scenario) => setPool((p) => [...p.filter((x) => x.name !== s.name), s].slice(-6));
+  const addToPool = (s: Scenario) => setPool((p) => {
+    const same = p.find((x) => x.name === s.name);
+    if (same && JSON.stringify(same) !== JSON.stringify(s)) {
+      let k = 2;
+      while (p.some((x) => x.name === `${s.name.slice(0, 55)} v${k}`)) k++;
+      s = { ...s, name: `${s.name.slice(0, 55)} v${k}` };
+    }
+    return [...p.filter((x) => x.name !== s.name), s].slice(-6);
+  });
   const remember = (item: HistoryItem, rec?: AnalyzeRecord | ArenaRecord) => { saveRun(item, rec); };
 
   const loadBands = async (s: Scenario, horizon: number, paths: number) => {
@@ -65,7 +73,7 @@ export function Console() {
       setRecord(r); setEvents(r.trace); setSessionId(r.session_id);
       remember({ run_id: r.run_id, kind: "analyze", title: q.trim().slice(0, 80), status: `${r.status} / ${r.mode}`, created_utc: r.created_utc }, r);
       for (const slot of Object.values(r.session?.slots ?? {})) addToPool(slot.scenario);
-      if (r.scenario && r.horizon_months && (r.status === "ok" || r.status === "partial")) await loadBands(r.scenario, r.horizon_months, r.n_paths);
+      if (r.scenario && r.horizon_months && (r.status === "ok" || r.status === "partial")) void loadBands(r.scenario, r.horizon_months, r.n_paths);
     } catch (e) {
       setError(e instanceof ApiError ? `${e.code}: ${e.message}` : (e as Error).message);
     } finally {

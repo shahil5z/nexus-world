@@ -77,7 +77,8 @@ export async function analyzeStream(body: { question: string; session_id?: strin
       if (!line) continue;
       const m = JSON.parse(line) as StreamMsg;
       onMsg(m);
-      if (m.type === "result") result = m.result;
+      // The result line is terminal: return as soon as it is parsed instead of waiting for the proxy to close the stream.
+      if (m.type === "result") { result = m.result; reader.cancel().catch(() => {}); return result; }
       if (m.type === "error") throw new ApiError(500, "pipeline_error", m.error);
     }
     if (done) break;

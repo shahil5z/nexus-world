@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "description": "Modeled dependency graph of the NEXUS // WORLD engine. Edges describe how the SIMULATOR is wired, not proven real-world causation.",
+  "description": "Modeled dependency graph of the NEXUS WORLD engine. Edges describe how the SIMULATOR is wired, not proven real-world causation.",
   "edge_types": {
     "learned": "Coefficient estimated by the Ridge transition model on 1980-05..2012-12 data; sign and value in models/model_card.json",
     "identity": "Accounting identity applied deterministically",

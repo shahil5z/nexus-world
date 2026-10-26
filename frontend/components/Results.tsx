@@ -111,7 +111,7 @@ export function Evidence({ r }: { r: AnalyzeRecord }) {
         const ev = c.evidence_id ? sheet.get(c.evidence_id) : undefined;
         return (
           <details key={i} className="panel" style={{ padding: "8px 10px" }}>
-            <summary style={{ fontSize: "var(--fs-s)" }}><span className="tag">{c.evidence_id ?? "no id"}</span> {c.text}</summary>
+            <summary style={{ fontSize: "var(--fs-s)" }}><span className="tag">{c.evidence_id ?? "unlinked"}</span> {c.text}</summary>
             <dl className="kv" style={{ marginTop: 8 }}>
               <dt>Field</dt><dd>{c.field}</dd>
               <dt>Tool</dt><dd>{c.tool ?? ev?.tool ?? "DATA UNAVAILABLE"}</dd>

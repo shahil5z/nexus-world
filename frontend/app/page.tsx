@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { CausalGraph } from "@/components/CausalGraph";
 import { ModelEvidence } from "@/components/ModelEvidence";
@@ -26,7 +25,7 @@ export default function Home() {
           <p className="label">Counterfactual lab / US energy and mobility</p>
           <h1 id="hero-title">Simulate tomorrow before you build it.</h1>
           <p className="lede">
-            NEXUS // WORLD asks what would happen if gasoline, electricity, income or jobs moved, and answers with modeled
+            NEXUS WORLD asks what would happen if gasoline, electricity, income or jobs moved, and answers with modeled
             ranges, not single guesses. Each run states how far it strays from the data it learned from.
           </p>
           <div className="row" style={{ marginTop: 26 }}>
@@ -99,11 +98,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <footer className="footer row" style={{ justifyContent: "space-between" }}>
-        <span className="row"><Image src="/logo-96.png" alt="" width={20} height={20} /> NEXUS // WORLD</span>
-        <span className="mono" style={{ fontSize: "var(--fs-xs)" }}>Not a forecast. Not financial or policy advice.</span>
-      </footer>
     </div>
   );
 }

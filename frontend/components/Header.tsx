@@ -9,9 +9,9 @@ export function Header() {
   return (
     <header className="topbar">
       <div className="wrap">
-        <Link href="/" className="brand" aria-label="NEXUS // WORLD home">
+        <Link href="/" className="brand" aria-label="NEXUS WORLD home">
           <Image src="/logo-96.png" alt="" width={26} height={26} priority />
-          <span>NEXUS // WORLD</span>
+          <span>NEXUS WORLD</span>
         </Link>
         <nav className="nav" aria-label="Primary">
           <Link href="/" aria-current={cur("/")}>Overview</Link>

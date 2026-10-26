@@ -1,4 +1,4 @@
-# NEXUS // WORLD: Data, Models, Validation (Phase 2, MEASURED on the box, Python 3.13.5)
+# NEXUS WORLD: Data, Models, Validation (Phase 2, MEASURED on the box, Python 3.13.5)
 
 ## Data (IMPLEMENTED)
 Six keyless FRED CSV series, snapshotted in `data/raw/` (about 80 KB) with sha256 in `manifest.json`. Data hash `3a305740276a45a6`.

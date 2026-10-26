@@ -1,4 +1,4 @@
-# NEXUS // WORLD: Phase 2 Implementation
+# NEXUS WORLD: Phase 2 Implementation
 
 Status legend: IMPLEMENTED (code exists and was run), PLANNED (later phase), NOT IMPLEMENTED (deliberately out of scope).
 

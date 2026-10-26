@@ -1,4 +1,4 @@
-# NEXUS // WORLD: Phase 1 Discovery Report
+# NEXUS WORLD: Phase 1 Discovery Report
 
 Date: 2026-10-26 (Asia/Calcutta). Phase: 1 of 5 (Discovery, product definition, architecture feasibility). No implementation performed.
 
@@ -8,7 +8,7 @@ Evidence labels: VERIFIED, OBSERVED, MEASURED, INFERRED, PLANNED, NOT VERIFIED, 
 
 | Item | Finding | Label |
 | --- | --- | --- |
-| Project folder | `C:\Users\Shahil\Downloads\PROJECT\Synthetic World Intelligence Engine` | VERIFIED |
+| Project folder | local Windows working copy (repository root) | VERIFIED |
 | Contents before Phase 1 | `logo.png` (1,583,494 bytes, 1254x1254 px), `Thumbs.db` (40,448 bytes, Windows thumbnail cache, auto-generated) | VERIFIED |
 | Hidden files | None besides the above (recursive `Get-ChildItem -Force`) | VERIFIED |
 | Git | Not a git repository (`git status`: fatal: not a git repository); no branches | VERIFIED |
@@ -24,7 +24,7 @@ Logo placement: keep `logo.png` at the root for now. In Phase 3 it will be refer
 
 ## 2. Product definition
 
-NEXUS // WORLD is a domain-bounded counterfactual simulation engine. A user states an intervention in natural language ("What happens if gasoline prices rise 30%?"). The system:
+NEXUS WORLD is a domain-bounded counterfactual simulation engine. A user states an intervention in natural language ("What happens if gasoline prices rise 30%?"). The system:
 
 1. Interprets it into a typed, validated `ScenarioSpec` (LLM, structured output).
 2. Checks it against the calibrated envelope (Reality Guard, deterministic).
@@ -44,7 +44,7 @@ Honest framing: outputs are "simulated outcomes", "model-based projections" and 
 | --- | --- | --- |
 | Market Intelligence Lab | Data science case study on online-retail transactions: sales KPIs, revenue by category, order-value bands (GBP) | What happened in sales? |
 | Autonomous BI Analyst | Question -> validated analysis plan; SQL and Python compute numbers on 2009 to 2011 retail data; LLM explains | What does the existing data say? |
-| NEXUS // WORLD | Counterfactual simulation of a dynamic system with interventions, agents and uncertainty | What could happen if we change X, and how sure is the model? |
+| NEXUS WORLD | Counterfactual simulation of a dynamic system with interventions, agents and uncertainty | What could happen if we change X, and how sure is the model? |
 
 NEXUS shares one principle with ABI Analyst (code computes, LLM explains) but is different in kind: forward simulation of interventions, time evolution, stochastic futures, learned dynamics, OOD detection. It must not use retail data or a BI query interface.
 

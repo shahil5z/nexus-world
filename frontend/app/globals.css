@@ -1,4 +1,4 @@
-/* NEXUS // WORLD design tokens. One type system (IBM Plex Sans + Plex Mono), thin borders, restrained palette. */
+/* NEXUS WORLD design tokens. One type system (IBM Plex Sans + Plex Mono), thin borders, restrained palette. */
 :root {
   --bg: #06080b;
   --bg-2: #0a0e13;
@@ -132,7 +132,7 @@ details[open] > summary::before { content: "-"; }
 .stack > div { background: var(--panel); padding: 14px 16px; }
 .stack dt { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
 .stack dd { margin: 4px 0 0; font-size: var(--fs-s); }
-.footer { border-top: 1px solid var(--line); padding: 22px 0 40px; color: var(--muted); font-size: var(--fs-s); }
+.footer { border-top: 1px solid var(--line); margin-top: 48px; padding: 22px 0 40px; color: var(--muted); font-size: var(--fs-s); }
 
 /* Console */
 .console { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: var(--gap); padding: 18px 0 40px; align-items: start; }
