@@ -1,17 +1,17 @@
-﻿# Project Context
+# Project Context
 
 ## Project
 Name: NEXUS // WORLD
 Purpose: Synthetic World Intelligence Engine. Tagline: "Simulate tomorrow before you build it."
 Product vision: A domain-bounded system for counterfactual simulation and decision experimentation. Computational models produce every number; LLM agents plan, critique and explain, never produce numbers.
-Current phase: Phase 4: Recruiter-facing frontend (complete, awaiting review)
-Status: Engine, agent layer and Next.js frontend IMPLEMENTED and verified locally on Windows, including live OpenAI runs and Playwright E2E. No deployment, no remote repository.
+Current phase: Phase 5: Production deployment (complete)
+Status: Live at https://nexus-world-sim.vercel.app (VERIFIED). Repo: https://github.com/shahil5z/nexus-world (public). Vercel project nexus-world, Git-connected, Services layout.
 
 ## Stack (pinned, VERIFIED installed on Windows, Python 3.13.15)
 - Runtime: numpy 2.5.4, pandas 3.1.0, scikit-learn 1.9.1, fastapi 0.162.0, uvicorn 0.54.0, pydantic 2.14.1, openai-agents 0.24.0, openai 3.37.0, python-dotenv 1.2.4
 - Dev: pytest 9.1.1, httpx 0.28.1. Training only: tensorflow-cpu 2.21.0
 - OpenAI model: gpt-6-luna (default, env NEXUS_OPENAI_MODEL), reasoning effort low
-- Frontend: next 16.4.3, react 19.3.1, typescript 5.9.3, vitest 5.0.5, @playwright/test 1.64.1`n- PLANNED: GitHub, Vercel (Services)
+- Frontend: next 16.4.3, react 19.3.1, typescript 5.9.3, vitest 5.0.5, @playwright/test 1.64.1`n- Hosting: GitHub (shahil5z/nexus-world), Vercel Services (Beta), Python 3.13 on Vercel
 
 ## Important Structure
 - `nexus/` engine (Phase 2) and `nexus/services.py` (shared cached engine, guard, backtests)
@@ -41,7 +41,7 @@ Phase 2 validation plus: deterministic critic rules, numeric grounding of explan
 Phase 2 controls plus: injection and scope guardrail before any LLM call, closed tool allowlist with typed args and limits, no code execution, budgets on LLM calls, tokens, tool calls and wall time, no prompts or secrets in traces.
 
 ## Deployment
-NOT IMPLEMENTED. Agent deps add about 30 MB to the Python bundle (MEASURED on Windows site-packages: openai 15.2 MB, agents 10.7 MB, mcp 2.4 MB, griffe 1.3 MB). Measured analyze end to end about 20-24 s, under the 300 s Hobby limit.
+See docs/DEPLOYMENT.md. Phase 3 note: Agent deps add about 30 MB to the Python bundle (MEASURED on Windows site-packages: openai 15.2 MB, agents 10.7 MB, mcp 2.4 MB, griffe 1.3 MB). Measured analyze end to end about 20-24 s, under the 300 s Hobby limit.
 
 ## Constraints
 - No TensorFlow in the runtime bundle. Only edit files inside the project folder.
@@ -78,3 +78,16 @@ Verified on Windows: 115 tests (no key), live runs with gpt-6-luna, /agent/statu
 - [x] SEO and OG metadata, favicon from logo.png (undistorted)
 - [x] 121 pytest, tsc, eslint, vitest 7, next build, Playwright 3 passed with live key
 - [ ] Shahil review before Phase 5 (deployment)
+## Phase 5 Summary
+- Audit: npm audit 0 vulnerabilities (prod deps), pip-audit no known vulnerabilities, no secrets or forblog.md/.env/.venv/node_modules in git history.
+- README rewritten short; detail in docs/. Legacy api/index.py removed.
+- GitHub repo created and pushed; Vercel project imported from it; every change deployed by git push.
+- Env vars on Vercel: OPENAI_API_KEY (sensitive), NEXUS_OPENAI_MODEL, NEXT_PUBLIC_SITE_URL.
+- Production fixes from evidence: /_next/image 404 under Services (images unoptimized), /api security headers, Python pinned to 3.13.
+
+## Phase 5 Verification (MEASURED on production)
+- /, /console, /run/[id], /api/health, /api/agent/status: 200. Live check ok with gpt-6-luna.
+- Playwright against production with live key: 3 passed, 1 skipped; engine run 842 ms, AI analysis 17.8 s in UI.
+- One of three live UI runs returned PARTIAL AI FALLBACK (labelled honestly); rerun passed.
+- No key patterns in HTML, JS chunks or API responses.
+- NOT VERIFIED: true cold start (first request after deploy took 0.38 s, possibly pre-warmed), behaviour under concurrent load, run-store persistence across instances.

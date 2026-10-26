@@ -1,6 +1,6 @@
 # Deployment
 
-One Vercel project, Git-connected to this repository, using Vercel Services (Beta).
+Production: https://nexus-world-sim.vercel.app (VERIFIED 2026-10-26). One Vercel project, Git-connected to this repository, using Vercel Services (Beta).
 
 | Service | Root | Runtime | Public route |
 |---|---|---|---|
@@ -27,3 +27,11 @@ Push to `main`; Vercel builds both services and promotes the deployment to produ
 
 - Run records are kept in memory per function instance, so `/run/{id}` links work only while that instance is warm.
 - Rate limits: POST 30/min, GET 120/min per IP (in memory, per instance).
+
+## Production notes (MEASURED 2026-10-26)
+
+- Project framework preset: `services`. Python 3.13 via `.python-version`. Functions run in iad1.
+- Python bundle reported by the build: 289 MB (Vercel optimizes dependencies above the standard size).
+- `/_next/image` returned 404 under Services, so `images.unoptimized` is set; logos are pre-resized copies of `logo.png`.
+- Security headers on `/api/*` via `vercel.json`; Next.js pages set them in `next.config.ts`.
+- `nexus-world.vercel.app` belongs to another account, so the clean alias is `nexus-world-sim.vercel.app`.
