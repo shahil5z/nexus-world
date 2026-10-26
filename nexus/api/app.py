@@ -45,7 +45,15 @@ def jlog(**kw):
 from nexus.services import get_backtests, get_engine, get_guard  # noqa: E402
 
 
-app = FastAPI(title="NEXUS // WORLD API", version=ENGINE_VERSION, docs_url="/docs", redoc_url=None)
+# API docs are off unless NEXUS_ENABLE_DOCS=1 (local development only).
+_DOCS = os.environ.get("NEXUS_ENABLE_DOCS") == "1"
+app = FastAPI(
+    title="NEXUS // WORLD API",
+    version=ENGINE_VERSION,
+    docs_url="/docs" if _DOCS else None,
+    redoc_url="/redoc" if _DOCS else None,
+    openapi_url="/openapi.json" if _DOCS else None,
+)
 
 try:  # agent layer is optional: the engine API works without openai-agents installed
     from nexus.agentic.api import router as _agent_router

@@ -68,3 +68,8 @@ def test_rate_limit(client):
 
 def test_no_training_endpoint(client):
     assert client.post("/model/train").status_code in (404, 405)
+
+
+def test_docs_hidden_by_default(client):
+    for path in ("/docs", "/redoc", "/openapi.json"):
+        assert client.get(path).status_code == 404
