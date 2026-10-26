@@ -1,30 +1,46 @@
-﻿<p align="center">
-  <img src="logo.png" alt="NEXUS // WORLD logo" width="180">
+<p align="center">
+  <img src="logo.png" alt="NEXUS // WORLD logo" width="160">
 </p>
 
 <h1 align="center">NEXUS // WORLD</h1>
-<p align="center"><b>Synthetic World Intelligence Engine</b><br>Simulate tomorrow before you build it.</p>
+<p align="center"><i>Simulate tomorrow before you build it.</i></p>
 
 <p align="center">
-  <img alt="Python" src="https://img.shields.io/badge/python-3.13-blue">
-  <img alt="FastAPI" src="https://img.shields.io/badge/API-FastAPI-009688">
-  <img alt="scikit-learn" src="https://img.shields.io/badge/ML-scikit--learn-f7931e">
-  <img alt="TensorFlow" src="https://img.shields.io/badge/offline-TensorFlow-ff6f00">
-  <img alt="Status" src="https://img.shields.io/badge/phase-4%20frontend-lightgrey">
+  <a href="LIVE_URL"><img alt="Live demo" src="https://img.shields.io/badge/live-demo-2ea44f?style=flat-square"></a>
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.13-3776AB?style=flat-square&logo=python&logoColor=white">
+  <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-0.162-009688?style=flat-square&logo=fastapi&logoColor=white">
+  <img alt="scikit-learn" src="https://img.shields.io/badge/scikit--learn-1.9-F7931E?style=flat-square&logo=scikitlearn&logoColor=white">
+  <img alt="OpenAI Agents" src="https://img.shields.io/badge/OpenAI%20Agents-SDK-412991?style=flat-square&logo=openai&logoColor=white">
+  <img alt="Next.js" src="https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs&logoColor=white">
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.9-3178C6?style=flat-square&logo=typescript&logoColor=white">
+  <img alt="Vercel" src="https://img.shields.io/badge/Deployed%20on-Vercel-000000?style=flat-square&logo=vercel&logoColor=white">
 </p>
 
-A hybrid simulator of US monthly energy and mobility: what happens to miles driven, fuel use, CO2 and household energy burden if gasoline, electricity, income or unemployment change? A learned transition model fitted on public FRED data, combined with accounting identities, household-type agents, Monte Carlo percentile ranges and a Reality Guard that flags extrapolation.
+A counterfactual simulator for US energy and mobility. Ask what happens to miles driven, fuel spend, CO2 and household energy burden if gasoline, electricity, income or jobs change, and get modeled percentile ranges instead of single guesses.
 
-- Engine, API and tests: see `docs/PHASE-2-IMPLEMENTATION.md`
-- Data, metrics, backtests and limitations: see `docs/DATA-AND-MODEL.md`
-- Frontend console (IMPLEMENTED, Next.js, not deployed): see `docs/PHASE-4-FRONTEND.md`.
-- Agent layer (IMPLEMENTED: Supervisor, Model Critic, Explanation, Policy Arena, grounding; PLANNED: deployment): see `docs/PHASE-3-AGENTS.md`. Copy `.env.example` to `.env` for a key; without one the API runs engine-only.
+**How it works:** question → Reality Guard → Monte Carlo engine (Ridge transition model + accounting identities) → AI agents critique and explain, grounded only in computed numbers.
 
-Quick start (Windows):
+<p align="center">
+  <img src="reports/screenshots/desktop-landing.png" alt="NEXUS // WORLD landing page" width="820">
+</p>
+
+## Quick start
+
+```bash
+python -m venv .venv && .venv/bin/pip install -r requirements-dev.txt   # Windows: .venv\Scripts\pip
+.venv/bin/uvicorn nexus.api.vercel_app:app --port 8000
+cd frontend && npm ci
+NEXUS_BACKEND_URL=http://127.0.0.1:8000 npm run build && NEXUS_BACKEND_URL=http://127.0.0.1:8000 npm start
 ```
-python -m venv .venv
-.venv\Scripts\pip install -r requirements-dev.txt
-.venv\Scripts\python -m pytest
-.venv\Scripts\uvicorn nexus.api.app:app --port 8000
-```
-Outputs are simulations under stated assumptions, not forecasts or advice.
+
+Copy `.env.example` to `.env` and set `OPENAI_API_KEY` for AI mode. Without a key the app runs engine-only.
+
+## Docs
+
+- [Data and model](docs/DATA-AND-MODEL.md)
+- [Engine and API](docs/PHASE-2-IMPLEMENTATION.md)
+- [Agent layer](docs/PHASE-3-AGENTS.md)
+- [Frontend](docs/PHASE-4-FRONTEND.md)
+- [Deployment](docs/DEPLOYMENT.md)
+
+<sub>Outputs are simulations under stated assumptions, not forecasts or advice.</sub>
