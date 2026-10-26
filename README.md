@@ -6,7 +6,6 @@
 <p align="center"><i>Simulate tomorrow before you build it.</i></p>
 
 <p align="center">
-  <a href="https://nexus-world-zeta.vercel.app"><img alt="Live demo" src="https://img.shields.io/badge/live-demo-2ea44f?style=flat-square"></a>
   <img alt="Python" src="https://img.shields.io/badge/Python-3.13-3776AB?style=flat-square&logo=python&logoColor=white">
   <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-0.162-009688?style=flat-square&logo=fastapi&logoColor=white">
   <img alt="scikit-learn" src="https://img.shields.io/badge/scikit--learn-1.9-F7931E?style=flat-square&logo=scikitlearn&logoColor=white">
@@ -14,6 +13,11 @@
   <img alt="Next.js" src="https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs&logoColor=white">
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.9-3178C6?style=flat-square&logo=typescript&logoColor=white">
   <img alt="Vercel" src="https://img.shields.io/badge/Deployed%20on-Vercel-000000?style=flat-square&logo=vercel&logoColor=white">
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square"></a>
+</p>
+
+<p align="center">
+  <a href="https://nexus-world-zeta.vercel.app"><img alt="Live Demo" src="https://img.shields.io/badge/Live%20Demo-Open%20NEXUS%20WORLD-2ea44f?style=for-the-badge&logo=vercel&logoColor=white"></a>
 </p>
 
 A counterfactual simulation lab for US energy and mobility, with uncertainty, extrapolation checks and audited AI explanations.
@@ -81,7 +85,15 @@ Both services deploy as one Vercel project using Vercel Services: Next.js serves
 
 ## Tech Stack
 
-Python 3.13, NumPy, pandas, scikit-learn, FastAPI, Pydantic, OpenAI Agents SDK (gpt-6-luna) · Next.js 16, React 19, TypeScript · pytest, Vitest, Playwright · Vercel Services.
+| Layer | Technologies |
+| --- | --- |
+| Data & ML | FRED public series, pandas, NumPy, scikit-learn (Ridge, IsolationForest) |
+| Simulation | NumPy Monte Carlo engine, block bootstrap, household-type agents |
+| Backend | Python 3.13, FastAPI, Pydantic |
+| AI Agents | OpenAI Agents SDK (Supervisor, ModelCritic, Explanation) |
+| Frontend | Next.js 16, React 19, TypeScript |
+| Deployment | Vercel (Services: Next.js plus Python API) |
+| Testing | pytest, Vitest, Playwright |
 
 ## Quick Start
 
@@ -110,10 +122,12 @@ Outputs are simulations under stated assumptions, not forecasts or advice.
 
 [Data and model](docs/DATA-AND-MODEL.md) · [Engine and API](docs/PHASE-2-IMPLEMENTATION.md) · [Agent layer](docs/PHASE-3-AGENTS.md) · [Frontend](docs/PHASE-4-FRONTEND.md) · [Deployment](docs/DEPLOYMENT.md)
 
-## License
-
-No license file is included; all rights reserved.
-
 ## Author
 
-Shahil ([@shahil5z](https://github.com/shahil5z)). A Data Science portfolio project.
+Designed and developed by **Shohrab Haque Shahil**
+
+[LinkedIn](https://www.linkedin.com/in/shohrab-haque) | [Website](https://shahil-personal.vercel.app)
+
+## License
+
+Released under the [MIT License](LICENSE).
