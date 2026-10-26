@@ -1,0 +1,46 @@
+{
+  "python": "3.13.15",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "engine_init_ms": 26.5,
+  "step_1000_paths": {
+    "median_ms": 0.031,
+    "p95_ms": 0.036,
+    "reps": 200
+  },
+  "deterministic_trajectory_24m": {
+    "median_ms": 2.233,
+    "p95_ms": 2.492,
+    "reps": 30
+  },
+  "monte_carlo_500x24_2_scenarios": {
+    "median_ms": 11.149,
+    "p95_ms": 12.298,
+    "reps": 10
+  },
+  "monte_carlo_2000x36_2_scenarios": {
+    "median_ms": 57.863,
+    "p95_ms": 59.092,
+    "reps": 5
+  },
+  "ridge_inference_1000": {
+    "median_ms": 0.003,
+    "p95_ms": 0.003,
+    "reps": 500
+  },
+  "tf_ensemble_numpy_inference_1000": {
+    "median_ms": 0.255,
+    "p95_ms": 0.33,
+    "reps": 200
+  },
+  "api_monte_carlo_500x24_inprocess": {
+    "median_ms": 28.878,
+    "p95_ms": 30.866,
+    "reps": 10
+  },
+  "api_run_deterministic_inprocess": {
+    "median_ms": 13.089,
+    "p95_ms": 14.096,
+    "reps": 20
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "files": [
+    {
+      "variable": "gasoline_price",
+      "series_id": "APU00007471A",
+      "file": "APU00007471A.csv",
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=APU00007471A",
+      "publisher": "BLS via FRED",
+      "retrieved_utc": "2026-10-26T13:07:57+00:00",
+      "sha256": "17c3adf362640ff6dfc27e097c6195f2597f6a9de9a3c97ab84a6d64cb3f7002",
+      "bytes": 9970
+    },
+    {
+      "variable": "electricity_price",
+      "series_id": "APU000072610",
+      "file": "APU000072610.csv",
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=APU000072610",
+      "publisher": "BLS via FRED",
+      "retrieved_utc": "2026-10-26T13:07:57+00:00",
+      "sha256": "3fc8c3652a3af7c9c05d8fae0c72843f6afde4521032608a6a3fbcd6a3a77a7e",
+      "bytes": 9795
+    },
+    {
+      "variable": "cpi",
+      "series_id": "CPIAUCSL",
+      "file": "CPIAUCSL.csv",
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL",
+      "publisher": "BLS via FRED",
+      "retrieved_utc": "2026-10-26T13:07:57+00:00",
+      "sha256": "8556b710094027fa4724641d48be620cc37c04abfa15a0c496378cf1146c1549",
+      "bytes": 17763
+    },
+    {
+      "variable": "real_income",
+      "series_id": "DSPIC96",
+      "file": "DSPIC96.csv",
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DSPIC96",
+      "publisher": "BEA via FRED",
+      "retrieved_utc": "2026-10-26T13:07:57+00:00",
+      "sha256": "51e76318fb05ce9e09b3432c8c2f645a93a9263ed305500f8b8884273355d62f",
+      "bytes": 14955
+    },
+    {
+      "variable": "unemployment",
+      "series_id": "UNRATE",
+      "file": "UNRATE.csv",
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=UNRATE",
+      "publisher": "BLS via FRED",
+      "retrieved_utc": "2026-10-26T13:07:57+00:00",
+      "sha256": "621ff6fadf50910cb7a21ee20ba610c247cb043b29b4e05c4c1a72fadca2a06c",
+      "bytes": 14211
+    },
+    {
+      "variable": "vmt",
+      "series_id": "TRFVOLUSM227NFWA",
+      "file": "TRFVOLUSM227NFWA.csv",
+      "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=TRFVOLUSM227NFWA",
+      "publisher": "FHWA via FRED",
+      "retrieved_utc": "2026-10-26T13:07:58+00:00",
+      "sha256": "19dd41e21540014b76f2bb5be1614f8e7fe6cf53f63cf78617b494c84a462a5a",
+      "bytes": 12249
+    }
+  ]
+}

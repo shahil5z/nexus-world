@@ -1,0 +1,270 @@
+{
+  "model_version": "1.0.0+3a305740276a45a6",
+  "trained_utc": "2026-10-26T13:59:56+00:00",
+  "seed": 42,
+  "data_version": "3a305740276a45a6",
+  "pipeline": {
+    "version": "1.0.0",
+    "data_hash": "3a305740276a45a6",
+    "rows_raw": {
+      "gasoline_price": 585,
+      "electricity_price": 575,
+      "cpi": 957,
+      "real_income": 812,
+      "unemployment": 945,
+      "vmt": 680
+    },
+    "missing_dropped": {
+      "gasoline_price": 1,
+      "electricity_price": 2,
+      "cpi": 1,
+      "real_income": 0,
+      "unemployment": 1,
+      "vmt": 0
+    },
+    "merged_range": [
+      "1978-11-01",
+      "2026-08-01"
+    ],
+    "model_rows": 552,
+    "split_rows": {
+      "train": [
+        390,
+        "1980-05-01",
+        "2012-12-01"
+      ],
+      "val": [
+        60,
+        "2013-01-01",
+        "2017-12-01"
+      ],
+      "test": [
+        102,
+        "2018-01-01",
+        "2026-08-01"
+      ]
+    },
+    "gap_months": [
+      "1985-09-01",
+      "2025-10-01"
+    ]
+  },
+  "splits": {
+    "train_end": "2012-12-01",
+    "val_end": "2017-12-01",
+    "rows": {
+      "train": [
+        390,
+        "1980-05-01",
+        "2012-12-01"
+      ],
+      "val": [
+        60,
+        "2013-01-01",
+        "2017-12-01"
+      ],
+      "test": [
+        102,
+        "2018-01-01",
+        "2026-08-01"
+      ]
+    }
+  },
+  "target": "g = log VMT(t) - log VMT(t-12)",
+  "features": [
+    "dlp",
+    "dlp_lag6",
+    "dle",
+    "dly",
+    "du",
+    "g_lag1"
+  ],
+  "ridge": {
+    "alpha": 30.0,
+    "timeseries_cv_mae": 0.014023745890534766,
+    "coef": {
+      "dlp": -0.01814706841023067,
+      "dlp_lag6": -0.012890821202951725,
+      "dle": -0.008226602750823816,
+      "dly": 0.131473066066231,
+      "du": -0.0028693592348748367,
+      "g_lag1": 0.42755103110442044
+    },
+    "intercept": 0.008346325242738695,
+    "bootstrap_draws": 200,
+    "bootstrap_block": 24,
+    "oof_residuals": 325,
+    "interval80_coverage": {
+      "val": 0.9333333333333333,
+      "test": 0.696078431372549,
+      "test_excl_covid": 0.8375
+    }
+  },
+  "hist_gradient_boosting": {
+    "timeseries_cv_mae": 0.016985040215528147,
+    "role": "benchmark only"
+  },
+  "metrics": {
+    "val": {
+      "seasonal_naive_zero_growth": {
+        "mae": 0.017266283217813753,
+        "mse": 0.00037346054743561224,
+        "rmse": 0.019325127358845846,
+        "r2": -1.917622260446362,
+        "n": 60
+      },
+      "persistence_g_lag1": {
+        "mae": 0.00792220210895745,
+        "mse": 0.00014507792158496307,
+        "rmse": 0.012044829661932254,
+        "r2": -0.1334063970667676,
+        "n": 60
+      },
+      "ridge": {
+        "mae": 0.008879251968570194,
+        "mse": 0.0001391009529458796,
+        "rmse": 0.01179410670402297,
+        "r2": -0.08671194200016852,
+        "n": 60
+      },
+      "hist_gradient_boosting": {
+        "mae": 0.010577402692538217,
+        "mse": 0.0001860437014266146,
+        "rmse": 0.013639783774921602,
+        "r2": -0.45344735454743446,
+        "n": 60
+      },
+      "ridge_plus_tf_ensemble": {
+        "mae": 0.010219578936026742,
+        "mse": 0.00016953249737106576,
+        "rmse": 0.013020464560493446,
+        "r2": -0.32445526467334407,
+        "n": 60
+      }
+    },
+    "test": {
+      "seasonal_naive_zero_growth": {
+        "mae": 0.04332474695221154,
+        "mse": 0.007509915819534111,
+        "rmse": 0.08665977047935282,
+        "r2": -0.0025348216826526215,
+        "n": 102
+      },
+      "persistence_g_lag1": {
+        "mae": 0.03182070510928096,
+        "mse": 0.004663779008187765,
+        "rmse": 0.06829186633990732,
+        "r2": 0.3774096849156323,
+        "n": 102
+      },
+      "ridge": {
+        "mae": 0.03014839645341185,
+        "mse": 0.004327751577064196,
+        "rmse": 0.0657856487166023,
+        "r2": 0.42226760460971025,
+        "n": 102
+      },
+      "hist_gradient_boosting": {
+        "mae": 0.040914025788952445,
+        "mse": 0.007326234415993753,
+        "rmse": 0.08559342507455671,
+        "r2": 0.021985693269827356,
+        "n": 102
+      },
+      "ridge_plus_tf_ensemble": {
+        "mae": 0.030947734264147965,
+        "mse": 0.00437485579977196,
+        "rmse": 0.0661426927163686,
+        "r2": 0.41597943512184554,
+        "n": 102
+      }
+    },
+    "test_excl_covid": {
+      "seasonal_naive_zero_growth": {
+        "mae": 0.016061633360016248,
+        "mse": 0.0004989456940162646,
+        "rmse": 0.02233709233575992,
+        "r2": -0.4790237992645674,
+        "n": 80
+      },
+      "persistence_g_lag1": {
+        "mae": 0.014478407676654714,
+        "mse": 0.0004715445268698891,
+        "rmse": 0.02171507602726477,
+        "r2": -0.39779857010005903,
+        "n": 80
+      },
+      "ridge": {
+        "mae": 0.014117163205991271,
+        "mse": 0.00036060568801206486,
+        "rmse": 0.018989620533651136,
+        "r2": -0.06894277496787371,
+        "n": 80
+      },
+      "hist_gradient_boosting": {
+        "mae": 0.014275208119300964,
+        "mse": 0.00040204081592256307,
+        "rmse": 0.020050955486523903,
+        "r2": -0.19176884810600692,
+        "n": 80
+      },
+      "ridge_plus_tf_ensemble": {
+        "mae": 0.014983715078674987,
+        "mse": 0.0003794541532372636,
+        "rmse": 0.01947958298417252,
+        "r2": -0.12481524562350921,
+        "n": 80
+      }
+    }
+  },
+  "tensorflow": {
+    "attempted": true,
+    "selected": false,
+    "tensorflow_version": "2.21.0",
+    "members": 5,
+    "hidden": [
+      16,
+      16
+    ],
+    "loss": "huber",
+    "early_stopping_patience": 30,
+    "training_history": [
+      {
+        "epochs_run": 490,
+        "best_val_loss": 0.0001707445044303313,
+        "final_train_loss": 0.00015135234571062028
+      },
+      {
+        "epochs_run": 500,
+        "best_val_loss": 0.00018090190133079886,
+        "final_train_loss": 0.00015006265311967582
+      },
+      {
+        "epochs_run": 500,
+        "best_val_loss": 0.00018719641957432032,
+        "final_train_loss": 0.00015145902580115944
+      },
+      {
+        "epochs_run": 421,
+        "best_val_loss": 0.00017459661467000842,
+        "final_train_loss": 0.0001499206555308774
+      },
+      {
+        "epochs_run": 500,
+        "best_val_loss": 0.0001799666933948174,
+        "final_train_loss": 0.000149692059494555
+      }
+    ],
+    "numpy_parity_max_abs_diff": 1.220705773963271e-08,
+    "selection_rule": "selected only if val MAE < best of ridge, HGB and naive baselines",
+    "val_mae": 0.010219578936026742,
+    "best_other_val_mae": 0.00792220210895745,
+    "note": "Not used in the simulation loop; Ridge-only transition. Comparison kept."
+  },
+  "environment": {
+    "python": "3.13.15",
+    "numpy": "2.5.4",
+    "sklearn": "1.9.1"
+  },
+  "train_seconds": 162.03
+}

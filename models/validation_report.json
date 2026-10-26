@@ -1,0 +1,170 @@
+{
+  "data_version": "3a305740276a45a6",
+  "backtests": {
+    "2008_oil_spike": {
+      "window": [
+        "2007-07-01",
+        "2009-06-01"
+      ],
+      "train_rows": 324,
+      "months": 24,
+      "engine_mape_pct": 4.032962974953555,
+      "engine_max_ape_pct": 7.8416927811343795,
+      "seasonal_naive_mape_pct": 1.8983986747163588,
+      "persistence_mape_pct": 2.595380391725078,
+      "engine_beats_naive": false,
+      "engine_best": false
+    },
+    "2014_2016_collapse": {
+      "window": [
+        "2014-07-01",
+        "2016-06-01"
+      ],
+      "train_rows": 408,
+      "months": 24,
+      "engine_mape_pct": 2.1032842201129855,
+      "engine_max_ape_pct": 5.472765312150529,
+      "seasonal_naive_mape_pct": 3.2775993905692133,
+      "persistence_mape_pct": 1.5797140603259383,
+      "engine_beats_naive": true,
+      "engine_best": false
+    },
+    "2022_spike": {
+      "window": [
+        "2021-07-01",
+        "2023-06-01"
+      ],
+      "train_rows": 492,
+      "months": 24,
+      "engine_mape_pct": 3.5858943265759655,
+      "engine_max_ape_pct": 10.220130449084607,
+      "seasonal_naive_mape_pct": 5.7340895091050355,
+      "persistence_mape_pct": 11.242909459917295,
+      "engine_beats_naive": true,
+      "engine_best": true
+    }
+  },
+  "reality_guard_probes": {
+    "baseline": {
+      "tier": "HIGH",
+      "months_by_tier": {
+        "HIGH": 24,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "OOD": 0
+      },
+      "max_mahalanobis": 3.484686115050039,
+      "out_of_range_features": []
+    },
+    "gas_x1.3": {
+      "tier": "LOW",
+      "months_by_tier": {
+        "HIGH": 7,
+        "MEDIUM": 5,
+        "LOW": 12,
+        "OOD": 0
+      },
+      "max_mahalanobis": 4.7747307750524515,
+      "out_of_range_features": [
+        {
+          "feature": "dlp",
+          "min_seen": -0.26236426446749106,
+          "max_seen": 0.576554937425409,
+          "train_min": -0.5660955924738832,
+          "train_max": 0.3996665136339136
+        },
+        {
+          "feature": "dlp_lag6",
+          "min_seen": -0.26236426446749106,
+          "max_seen": 0.576554937425409,
+          "train_min": -0.5660955924738832,
+          "train_max": 0.3996665136339136
+        }
+      ]
+    },
+    "gas_x2": {
+      "tier": "OOD",
+      "months_by_tier": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 12,
+        "OOD": 12
+      },
+      "max_mahalanobis": 9.618018217451564,
+      "out_of_range_features": [
+        {
+          "feature": "dlp",
+          "min_seen": -0.6931471805599452,
+          "max_seen": 1.0073378535178632,
+          "train_min": -0.5660955924738832,
+          "train_max": 0.3996665136339136
+        },
+        {
+          "feature": "dlp_lag6",
+          "min_seen": -0.6931471805599452,
+          "max_seen": 1.0073378535178632,
+          "train_min": -0.5660955924738832,
+          "train_max": 0.3996665136339136
+        }
+      ]
+    },
+    "gas_x5": {
+      "tier": "OOD",
+      "months_by_tier": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "OOD": 24
+      },
+      "max_mahalanobis": 20.381996239091826,
+      "out_of_range_features": [
+        {
+          "feature": "dlp",
+          "min_seen": -1.6094379124341003,
+          "max_seen": 1.9236285853920183,
+          "train_min": -0.5660955924738832,
+          "train_max": 0.3996665136339136
+        },
+        {
+          "feature": "dlp_lag6",
+          "min_seen": -1.6094379124341003,
+          "max_seen": 1.9236285853920183,
+          "train_min": -0.5660955924738832,
+          "train_max": 0.3996665136339136
+        },
+        {
+          "feature": "g_lag1",
+          "min_seen": -0.07859389961500618,
+          "max_seen": 0.1007977610361408,
+          "train_min": -0.05574368446535338,
+          "train_max": 0.13526777950341007
+        }
+      ]
+    }
+  },
+  "uncertainty_decomposition_gas_x1.3": {
+    "metric": "vmt",
+    "all_sources": {
+      "delta_spread_p5_p95": 1757.339247812394,
+      "level_spread_p5_p95": 12699.84900728031
+    },
+    "without": {
+      "drivers": {
+        "delta_spread_p5_p95": 1735.9305829155196,
+        "level_spread_p5_p95": 10849.327397227054
+      },
+      "parameters": {
+        "delta_spread_p5_p95": 70.54325824498937,
+        "level_spread_p5_p95": 11264.642104061728
+      },
+      "noise": {
+        "delta_spread_p5_p95": 1769.1797497472455,
+        "level_spread_p5_p95": 10557.188157834113
+      },
+      "structural": {
+        "delta_spread_p5_p95": 1757.339247812394,
+        "level_spread_p5_p95": 12699.84900728031
+      }
+    }
+  }
+}

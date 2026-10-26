@@ -1,0 +1,3 @@
+# Offline training only (python -m training.train_all). Never deployed.
+-r requirements-dev.txt
+tensorflow-cpu==2.21.0
