@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
   <img src="logo.png" alt="NEXUS // WORLD logo" width="160">
 </p>
 
@@ -6,7 +6,7 @@
 <p align="center"><i>Simulate tomorrow before you build it.</i></p>
 
 <p align="center">
-  <a href="LIVE_URL"><img alt="Live demo" src="https://img.shields.io/badge/live-demo-2ea44f?style=flat-square"></a>
+  <a href="https://nexus-world.vercel.app"><img alt="Live demo" src="https://img.shields.io/badge/live-demo-2ea44f?style=flat-square"></a>
   <img alt="Python" src="https://img.shields.io/badge/Python-3.13-3776AB?style=flat-square&logo=python&logoColor=white">
   <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-0.162-009688?style=flat-square&logo=fastapi&logoColor=white">
   <img alt="scikit-learn" src="https://img.shields.io/badge/scikit--learn-1.9-F7931E?style=flat-square&logo=scikitlearn&logoColor=white">
@@ -18,7 +18,7 @@
 
 A counterfactual simulator for US energy and mobility. Ask what happens to miles driven, fuel spend, CO2 and household energy burden if gasoline, electricity, income or jobs change, and get modeled percentile ranges instead of single guesses.
 
-**How it works:** question → Reality Guard → Monte Carlo engine (Ridge transition model + accounting identities) → AI agents critique and explain, grounded only in computed numbers.
+**How it works:** question â†’ Reality Guard â†’ Monte Carlo engine (Ridge transition model + accounting identities) â†’ AI agents critique and explain, grounded only in computed numbers.
 
 <p align="center">
   <img src="reports/screenshots/desktop-landing.png" alt="NEXUS // WORLD landing page" width="820">
