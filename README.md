@@ -6,7 +6,7 @@
 <p align="center"><i>Simulate tomorrow before you build it.</i></p>
 
 <p align="center">
-  <a href="https://nexus-world.vercel.app"><img alt="Live demo" src="https://img.shields.io/badge/live-demo-2ea44f?style=flat-square"></a>
+  <a href="https://nexus-world-sim.vercel.app"><img alt="Live demo" src="https://img.shields.io/badge/live-demo-2ea44f?style=flat-square"></a>
   <img alt="Python" src="https://img.shields.io/badge/Python-3.13-3776AB?style=flat-square&logo=python&logoColor=white">
   <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-0.162-009688?style=flat-square&logo=fastapi&logoColor=white">
   <img alt="scikit-learn" src="https://img.shields.io/badge/scikit--learn-1.9-F7931E?style=flat-square&logo=scikitlearn&logoColor=white">
