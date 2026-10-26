@@ -7,6 +7,8 @@ const backend = process.env.NEXUS_BACKEND_URL;
 const config: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // /_next/image returns 404 under Vercel Services (observed in production); logos are pre-resized, so serve them as is.
+  images: { unoptimized: true },
   async rewrites() {
     return backend ? [{ source: "/api/:path*", destination: `${backend}/api/:path*` }] : [];
   },
