@@ -49,10 +49,19 @@ def test_model_endpoints(client):
     assert "backtests" in j and "test" in j["holdout_metrics"]
 
 
+def test_rate_limit_compute(client):
+    import nexus.api.app as appmod
+    appmod._hits.clear()
+    body = {"scenario": {"name": "x", "interventions": []}, "horizon_months": 3}
+    codes = [client.post("/simulation/validate", json=body).status_code for _ in range(appmod.RATE_LIMIT[0] + 1)]
+    appmod._hits.clear()
+    assert codes[:-1] == [200] * appmod.RATE_LIMIT[0] and codes[-1] == 429
+
+
 def test_rate_limit(client):
     import nexus.api.app as appmod
     appmod._hits.clear()
-    codes = [client.get("/health").status_code for _ in range(appmod.RATE_LIMIT[0] + 1)]
+    codes = [client.get("/health").status_code for _ in range(appmod.READ_RATE_LIMIT[0] + 1)]
     appmod._hits.clear()
     assert codes[-1] == 429 and codes[0] == 200
 

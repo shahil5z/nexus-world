@@ -24,3 +24,7 @@ Thumbs.db
 
 # Vercel
 .vercel
+
+reports/e2e_results.json
+frontend/test-results/
+

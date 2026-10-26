@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import logging
 import sys
 import threading
@@ -26,7 +27,8 @@ from nexus.simulation.engine import ScenarioError, SimulationEngine
 from nexus.validation.invariants import InvariantViolation
 
 MAX_BODY_BYTES = 64 * 1024
-RATE_LIMIT = (30, 60.0)  # requests per window seconds, per client IP (in-memory, per instance)
+RATE_LIMIT = (30, 60.0)  # compute requests (POST) per window seconds, per client IP (in-memory, per instance)
+READ_RATE_LIMIT = (120, 60.0)  # cheap GET requests (status, runs, knowledge) per window seconds, per client IP
 
 log = logging.getLogger("nexus")
 if not log.handlers:
@@ -61,6 +63,13 @@ def err(status, code, message, run_id, details=None):
     return JSONResponse(status_code=status, content=body)
 
 
+def client_ip(request: Request) -> str:
+    """On Vercel the platform sets x-real-ip; elsewhere trust only the socket peer (headers are spoofable)."""
+    if os.environ.get("VERCEL") and request.headers.get("x-real-ip"):
+        return request.headers["x-real-ip"]
+    return request.client.host if request.client else "unknown"
+
+
 @app.middleware("http")
 async def guard_requests(request: Request, call_next):
     run_id = uuid.uuid4().hex[:12]
@@ -69,13 +78,14 @@ async def guard_requests(request: Request, call_next):
     cl = request.headers.get("content-length")
     if cl is not None and (not cl.isdigit() or int(cl) > MAX_BODY_BYTES):
         return err(413, "payload_too_large", f"body must be <= {MAX_BODY_BYTES} bytes", run_id)
-    ip = request.client.host if request.client else "unknown"
+    ip = client_ip(request)
+    limit, window = RATE_LIMIT if request.method == "POST" else READ_RATE_LIMIT
     now = time.monotonic()
     with _lock:
-        q = _hits[ip]
-        while q and now - q[0] > RATE_LIMIT[1]:
+        q = _hits[f"{request.method == 'POST'}:{ip}"]
+        while q and now - q[0] > window:
             q.popleft()
-        if len(q) >= RATE_LIMIT[0]:
+        if len(q) >= limit:
             return err(429, "rate_limited", "too many requests, retry later", run_id)
         q.append(now)
     try:

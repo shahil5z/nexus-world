@@ -128,6 +128,7 @@ class Pipeline:
                             "banned_wording": [b["phrase"] for b in g["language_violations"]],
                             "instruction": "Use only display values from evidence_sheet and the user's own numbers; fix wording."}
             self.warnings.append("LLM explanation failed grounding or errored; grounded template used")
+        self.tr.add("pipeline", "template_explanation", "ok", summary="deterministic grounded template")
         g = grounding.check(grounding.explanation_fields(fallback), sheet, allowed)
         self.tr.add("pipeline", "grounding_check", "ok" if g["ok"] else "failed", summary="template explanation")
         return fallback, g, "template"
@@ -162,8 +163,9 @@ def _scenario_from(intent: ScenarioIntent, session: dict) -> tuple[dict, str]:
     return {"name": safe, "interventions": ivs}, slot
 
 
-async def analyze(req, agents=None, force_llm=None) -> dict:
+async def analyze(req, agents=None, force_llm=None, listener=None) -> dict:
     p = Pipeline(req, agents, force_llm)
+    p.tr.listener = listener
     started = datetime.now(timezone.utc).isoformat(timespec="seconds")
     sid, session = SESSIONS.get_or_create(req.session_id)
     rec = {"run_id": p.run_id, "kind": "analyze", "created_utc": started, "session_id": sid, "seed": req.seed,
@@ -294,6 +296,7 @@ async def analyze(req, agents=None, force_llm=None) -> dict:
     p.ctx.sheet = sb.items
     det = deterministic_verdict(p.ctx.evidence)
     p.ctx.deterministic = det
+    p.tr.add("pipeline", "critic_rules", "ok", summary=f"deterministic verdict {det['verdict']} ({len(det['reasons'])} reasons)")
 
     def verdict_now():
         llm = p.ctx.critic_output.verdict if isinstance(p.ctx.critic_output, CriticOutput) else None

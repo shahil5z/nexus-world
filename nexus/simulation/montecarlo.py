@@ -25,8 +25,9 @@ def uncertainty(x: np.ndarray, lower=5, upper=95) -> dict:
 
 
 def band_series(traj: np.ndarray) -> dict:
-    q = np.percentile(traj, [5, 25, 50, 75, 95], axis=0)
-    return {"p5": q[0].tolist(), "p25": q[1].tolist(), "median": q[2].tolist(), "p75": q[3].tolist(), "p95": q[4].tolist()}
+    q = np.percentile(traj, [5, 10, 25, 50, 75, 90, 95], axis=0)
+    return {"p5": q[0].tolist(), "p10": q[1].tolist(), "p25": q[2].tolist(), "median": q[3].tolist(),
+            "p75": q[4].tolist(), "p90": q[5].tolist(), "p95": q[6].tolist()}
 
 
 def horizon_mean(traj: np.ndarray) -> np.ndarray:

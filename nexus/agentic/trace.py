@@ -21,6 +21,7 @@ class Tracer:
         self.tokens = {"input": 0, "output": 0, "total": 0}
         self.llm_ms = 0.0
         self.tool_ms = 0.0
+        self.listener = None  # optional callable(event) used for streaming stage updates
 
     def add(self, agent: str, action: str, status: str = "ok", tool: str | None = None, summary: str = "",
             duration_ms: float | None = None, warnings: list[str] | None = None, **extra) -> dict:
@@ -29,6 +30,8 @@ class Tracer:
               "duration_ms": None if duration_ms is None else round(duration_ms, 1), "warnings": warnings or []}
         ev.update(extra)
         self.events.append(ev)
+        if self.listener is not None:
+            self.listener(ev)
         return ev
 
     def step(self, agent, action, tool=None):

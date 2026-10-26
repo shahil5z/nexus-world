@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "description": "Modeled dependency graph of the NEXUS // WORLD engine. Edges describe how the SIMULATOR is wired, not proven real-world causation.",
+  "edge_types": {
+    "learned": "Coefficient estimated by the Ridge transition model on 1980-05..2012-12 data; sign and value in models/model_card.json",
+    "identity": "Accounting identity applied deterministically",
+    "assumption": "Fixed parameter chosen by the project, not estimated"
+  },
+  "nodes": ["gasoline_price", "electricity_price", "real_income", "unemployment", "cpi", "vmt", "fuel_gallons", "co2_kt", "fuel_spend", "energy_burden_mean", "energy_burden_low_income"],
+  "edges": [
+    {"from": "gasoline_price", "to": "vmt", "type": "learned", "feature": "dlp", "lag_months": 0, "evidence": "model_card.ridge.coef.dlp"},
+    {"from": "gasoline_price", "to": "vmt", "type": "learned", "feature": "dlp_lag6", "lag_months": 6, "evidence": "model_card.ridge.coef.dlp_lag6"},
+    {"from": "electricity_price", "to": "vmt", "type": "learned", "feature": "dle", "lag_months": 0, "evidence": "model_card.ridge.coef.dle"},
+    {"from": "real_income", "to": "vmt", "type": "learned", "feature": "dly", "lag_months": 0, "evidence": "model_card.ridge.coef.dly"},
+    {"from": "unemployment", "to": "vmt", "type": "learned", "feature": "du", "lag_months": 0, "evidence": "model_card.ridge.coef.du"},
+    {"from": "vmt", "to": "vmt", "type": "learned", "feature": "g_lag1", "lag_months": 1, "evidence": "model_card.ridge.coef.g_lag1"},
+    {"from": "vmt", "to": "fuel_gallons", "type": "identity", "rule": "fuel = vmt / fleet_mpg (22 mpg, assumption)"},
+    {"from": "fuel_gallons", "to": "co2_kt", "type": "identity", "rule": "co2 = fuel x 8.887 kg CO2 per gallon"},
+    {"from": "fuel_gallons", "to": "fuel_spend", "type": "identity", "rule": "spend = fuel x gasoline price"},
+    {"from": "gasoline_price", "to": "fuel_spend", "type": "identity", "rule": "spend = fuel x gasoline price"},
+    {"from": "fuel_spend", "to": "energy_burden_mean", "type": "identity", "rule": "burden = (fuel + electricity spend) / income per household type"},
+    {"from": "electricity_price", "to": "energy_burden_mean", "type": "assumption", "rule": "860 kWh per household per month with -0.10 price elasticity"},
+    {"from": "real_income", "to": "energy_burden_mean", "type": "identity", "rule": "income is the burden denominator"},
+    {"from": "energy_burden_mean", "to": "energy_burden_low_income", "type": "assumption", "rule": "low-income types: 0.35 relative income, 1.4x elasticity multiplier"},
+    {"from": "cpi", "to": "gasoline_price", "type": "assumption", "rule": "CPI held flat during simulation, so nominal and real changes coincide"}
+  ]
+}

@@ -1,17 +1,17 @@
-# Project Context
+﻿# Project Context
 
 ## Project
 Name: NEXUS // WORLD
 Purpose: Synthetic World Intelligence Engine. Tagline: "Simulate tomorrow before you build it."
 Product vision: A domain-bounded system for counterfactual simulation and decision experimentation. Computational models produce every number; LLM agents plan, critique and explain, never produce numbers.
-Current phase: Phase 3: Agentic intelligence layer (complete, awaiting review)
-Status: Engine (Phase 2) plus agent layer IMPLEMENTED and run locally on Windows, including live OpenAI runs. No UI, no deployment, no remote repository.
+Current phase: Phase 4: Recruiter-facing frontend (complete, awaiting review)
+Status: Engine, agent layer and Next.js frontend IMPLEMENTED and verified locally on Windows, including live OpenAI runs and Playwright E2E. No deployment, no remote repository.
 
 ## Stack (pinned, VERIFIED installed on Windows, Python 3.13.15)
 - Runtime: numpy 2.5.4, pandas 3.1.0, scikit-learn 1.9.1, fastapi 0.162.0, uvicorn 0.54.0, pydantic 2.14.1, openai-agents 0.24.0, openai 3.37.0, python-dotenv 1.2.4
 - Dev: pytest 9.1.1, httpx 0.28.1. Training only: tensorflow-cpu 2.21.0
 - OpenAI model: gpt-6-luna (default, env NEXUS_OPENAI_MODEL), reasoning effort low
-- PLANNED: Next.js + TypeScript 2D UI, GitHub, Vercel
+- Frontend: next 16.4.3, react 19.3.1, typescript 5.9.3, vitest 5.0.5, @playwright/test 1.64.1`n- PLANNED: GitHub, Vercel (Services)
 
 ## Important Structure
 - `nexus/` engine (Phase 2) and `nexus/services.py` (shared cached engine, guard, backtests)
@@ -65,3 +65,16 @@ NOT IMPLEMENTED. Agent deps add about 30 MB to the Python bundle (MEASURED on Wi
 
 ## Verification
 Verified on Windows: 115 tests (no key), live runs with gpt-6-luna, /agent/status live check. Not verified: deployment, cold start on Vercel, shared state across instances, UI.
+
+## Phase 4 Summary
+- Next.js console in frontend/: landing, /console, /run/[id]. Real backend data only; DATA UNAVAILABLE when missing.
+- Backend: vercel_app mounts API at /api; streaming analyze; suggestions and causal-graph endpoints; GET and POST rate limits split.
+- vercel.json: Services web (frontend/, nextjs) and api (nexus.api.vercel_app:app). Services is Beta.
+- Run store is in-memory per instance; UI degrades with an explicit not-available message.
+
+## Phase 4 Acceptance Criteria
+- [x] Landing, console, run view, Policy Arena, compare, trace
+- [x] Accessibility: keyboard, focus, labels, reduced motion, chart text tables
+- [x] SEO and OG metadata, favicon from logo.png (undistorted)
+- [x] 121 pytest, tsc, eslint, vitest 7, next build, Playwright 3 passed with live key
+- [ ] Shahil review before Phase 5 (deployment)
