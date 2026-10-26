@@ -8,7 +8,6 @@ import threading
 import time
 import uuid
 from collections import defaultdict, deque
-from functools import lru_cache
 
 import numpy as np
 from fastapi import FastAPI, Request
@@ -41,27 +40,16 @@ def jlog(**kw):
     log.info(json.dumps(kw, default=str))
 
 
-@lru_cache(maxsize=1)
-def get_engine() -> SimulationEngine:
-    return SimulationEngine()
-
-
-@lru_cache(maxsize=1)
-def get_guard() -> RealityGuard:
-    from nexus.data.pipeline import run_pipeline
-    _, _, splits, _ = run_pipeline()
-    return RealityGuard.fit(splits["train"][FEATURES].to_numpy(), seed=42)
-
-
-@lru_cache(maxsize=1)
-def get_backtests() -> dict:
-    from nexus.validation.backtest import run_backtests
-    e = get_engine()
-    from nexus.data.pipeline import make_features
-    return run_backtests(e.levels, make_features(e.levels), e.models.card["ridge"]["alpha"])
+from nexus.services import get_backtests, get_engine, get_guard  # noqa: E402
 
 
 app = FastAPI(title="NEXUS // WORLD API", version=ENGINE_VERSION, docs_url="/docs", redoc_url=None)
+
+try:  # agent layer is optional: the engine API works without openai-agents installed
+    from nexus.agentic.api import router as _agent_router
+    app.include_router(_agent_router)
+except ImportError:  # pragma: no cover
+    _agent_router = None
 _hits: dict[str, deque] = defaultdict(deque)
 _lock = threading.Lock()
 

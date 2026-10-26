@@ -5,3 +5,7 @@ scikit-learn==1.9.1
 fastapi==0.162.0
 uvicorn==0.54.0
 pydantic==2.14.1
+# Agent layer (Phase 3). The engine and /simulate work without these or without a key.
+openai-agents==0.24.0
+openai==3.37.0
+python-dotenv==1.2.4

@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "kind": "external_knowledge",
+  "warning": "Curated context about the data sources. Not model evidence and never a source of numbers in results.",
+  "notes": [
+    {"id": "N1", "topic": "vmt", "text": "Vehicle miles traveled comes from the FHWA Traffic Volume Trends series published on FRED as TRFVOLUSM227NFWA. It covers all US roads and all vehicles, not only households.", "citation": "https://fred.stlouisfed.org/series/TRFVOLUSM227NFWA"},
+    {"id": "N2", "topic": "gasoline_price", "text": "Gasoline price is the BLS average price series for unleaded regular gasoline, US city average, published on FRED as APU00007471A.", "citation": "https://fred.stlouisfed.org/series/APU00007471A"},
+    {"id": "N3", "topic": "electricity_price", "text": "Electricity price is the BLS average price series for electricity per kWh, US city average, published on FRED as APU000072610.", "citation": "https://fred.stlouisfed.org/series/APU000072610"},
+    {"id": "N4", "topic": "real_income", "text": "Real income is BEA real disposable personal income in chained 2017 dollars, published on FRED as DSPIC96.", "citation": "https://fred.stlouisfed.org/series/DSPIC96"},
+    {"id": "N5", "topic": "unemployment", "text": "Unemployment is the BLS civilian unemployment rate, published on FRED as UNRATE.", "citation": "https://fred.stlouisfed.org/series/UNRATE"},
+    {"id": "N6", "topic": "cpi", "text": "Prices are deflated with the BLS CPI for all urban consumers, published on FRED as CPIAUCSL.", "citation": "https://fred.stlouisfed.org/series/CPIAUCSL"}
+  ]
+}
